@@ -19592,3 +19592,8 @@ small {
   align-self: center;
 }
 /*# sourceMappingURL=app.css.map*/
+
+
+.active {
+  background-color: rgba(255, 255, 255, 0.13) !important;
+}

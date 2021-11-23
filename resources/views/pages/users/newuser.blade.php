@@ -53,7 +53,8 @@
                        <label> Telefone: </label>
                    </div>
                    <div id="confm2" class="text-sm-left">
-                       <input type="phone" class="form-control text-center" minlength="15" id="phone" name="phone" required />
+                       <input type="phone" class="form-control text-center" minlength="15" id="phone" name="phone" 
+                       pattern="\([0-9]{2}\) [0-9]{4,6}-[0-9]{3,4}$" required />
                    </div>
 
                    <div id="confm1" class="text-sm-center" >

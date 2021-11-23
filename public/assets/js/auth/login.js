@@ -21,12 +21,13 @@ $(document).ready(function($){
       
     })()
 	
-	$('.eye').on("click", function(){
+	$('.eye-login').on("click", function(){
 		let input = document.querySelector('#password');
 		let i = document.querySelector('#icon');
 
 		if(input.getAttribute('type') == 'password'){
 			input.setAttribute('type', 'text');
+      console.log(input)
 			i.setAttribute('class', 'mdi mdi-eye-off-outline');
 		} else {
 			input.setAttribute('type', 'password');
@@ -37,11 +38,11 @@ $(document).ready(function($){
 })
 
 
-function notfound() {
+function error_login(msg) {
 	bootbox.alert({
         size: 'small',
         backdrop: true,
-        message: "Usuário não encontrado.",
+        message: msg,
         title: "Atenção!!",
         centerVertical: true,
         show: true,

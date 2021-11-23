@@ -9,9 +9,9 @@
 
     <ul class="navbar-nav navbar-nav-left header-links">
       <li class="nav-item d-none d-xl-flex">
-        <a href="/clients" class="nav-link"> Clientes </a>
+        <a href="/clients" class="nav-link {{ active_class(['clients']) }}"> Clientes </a>
       </li>
-      <li class="nav-item d-none d-xl-flex">
+      <li class="nav-item d-none d-xl-flex {{ active_class(['users']) }}">
         <a href="/users" class="nav-link"> Usuários </a>
       </li>
     </ul>

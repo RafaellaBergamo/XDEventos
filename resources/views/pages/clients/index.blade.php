@@ -108,7 +108,7 @@
             <div class="card-body" style="padding-bottom: 0.229rem;">
                 <div class="table-responsive">
                     <table class="table table-striped" id="table-clients">
-                        <thead class="text-center">
+                        <thead class="text-center style-th">
                             <th></th>
                             <th></th>
                             <th>Código</th>
@@ -135,7 +135,7 @@
                                 <td class="text-center"> {{ $client->client_origin }} </td>
                                 <td class="text-center"> {{ $client->client_state }} </td>
                                 <td> {{ $client->client_city }} </td>
-                                <td class="text-center"> {{ $client->client_sit }} </td>
+                                <td class="text-center"> {{ $client->client_sit == 'A' ? 'Ativo' : 'Inativo' }} </td>
                                 <td> {{ $client->client_obs }} </td>
                             </tr>
                             @endforeach

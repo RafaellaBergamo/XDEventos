@@ -7,7 +7,7 @@ use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
-use App\Mail\ValidaEmail;
+use App\Mail\SendEmail;
 use App\User;
 
 class ForgotPasswordController extends Controller
@@ -51,7 +51,7 @@ class ForgotPasswordController extends Controller
         $token = $this->createToken();
 
         \Illuminate\Support\Facades\Mail::to($email)
-        ->send(new \App\Mail\ValidaEmail(['token' => $token])); 
+        ->send(new \App\Mail\SendEmail(['token' => $token])); 
 
         return response()->json([
             'status_code' => 200,
@@ -64,7 +64,7 @@ class ForgotPasswordController extends Controller
 
     public function viewChangePassword($email) {
         $user = collect(DB::select("SELECT * FROM users WHERE user_email = '$email' "))->first();
-        return view('pages.user-pages.changepassword')->with('id', $user->id);
+        return view('pages.auth.changepassword')->with('id', $user->id);
     }
 
     private function userExist($email) {
@@ -84,7 +84,7 @@ class ForgotPasswordController extends Controller
 
         $message = $update ? "Senha atualizada com sucesso! <br> Por favor, logue novamente." : "Ocorreu um erro ao atualizar senha. <br> Tente novamente mais tarde";
 
-        return view('pages.user-pages.changepassword')->with('id', $request->id)->with('success', $update)->with('message', $message);
+        return view('pages.auth.changepassword')->with('id', $request->id)->with('success', $update)->with('message', $message);
     }
 
     private function createToken() {

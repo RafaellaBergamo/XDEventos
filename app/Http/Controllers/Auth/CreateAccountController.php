@@ -13,7 +13,7 @@ class CreateAccountController extends Controller
 {
     public function newAccount() {
         $states = $this->getStates();
-        return view('pages.user-pages.register', ['states' => $states]);
+        return view('pages.auth.register', ['states' => $states]);
     }
 
     public function createAccount(Request $request) {
@@ -37,7 +37,7 @@ class CreateAccountController extends Controller
             $message = "Usuário informado já existe!";
         }
 
-        return view('pages.user-pages.register')->with('message', $message)
+        return view('pages.auth.register')->with('message', $message)
                                                 ->with('saved', $insert)
                                                 ->with('states', $this->getStates());
 

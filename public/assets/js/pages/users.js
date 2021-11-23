@@ -59,7 +59,7 @@ $(document).ready(function($){
     })
 
     $("#table-users").DataTable({
-        dom: "tipr",
+        dom: "tpr",
         pageLength: '10'
     })
 

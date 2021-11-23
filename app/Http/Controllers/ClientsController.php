@@ -183,6 +183,7 @@ class ClientsController extends Controller
             'client_origin'   => !empty($origin) ? implode(";", $origin) : ""
         ]);
 
+
         $message = $update ? "Cliente atualizado com sucesso!" : "Ocorreu um erro ao atualizar cliente.";
 
         return view('pages.clients.updateclient')->with("client", $client)->with("states", $states)

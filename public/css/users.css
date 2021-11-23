@@ -297,7 +297,17 @@
     margin-left: 10px;
 }
 
+#table-users{
+    border-color: lightgray !important;
+}
+#table-users th{
+    border-color: lightgray !important;
+    font-weight: 500;
+}
 
+#table-users_paginate {
+    font-size: 13px !important;
+}
 
 
 

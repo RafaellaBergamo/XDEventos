@@ -13,14 +13,15 @@
   <div class="col-lg-12 grid-margin stretch-card">
     <div class="card">
         <div class="p-4 border-bottom bg-light">
-            <h2 class="card-title mb-0"> Atualizar Cliente
+            <h2 class="card-title mb-0"> Atualizar Usuário
             </h2>
             
         </div>
 
         <div class="card-body" style="padding-bottom: 0.229rem;">
 
-            <form id="users-form" action="{{ route('save-update-user') }}" class="needs-validation" novalidate method="POST">
+            <form id="users-form" action="{{ route('save-update-user') }}" class="needs-validation" 
+            novalidate method="POST">
                 {{ csrf_field() }}
                 <div class="grid-update-user">
                     <div id="confm1" class="text-sm-center" >
@@ -53,7 +54,8 @@
                        <label> Telefone: </label>
                    </div>
                    <div id="confm2" class="text-sm-left">
-                       <input type="text" class="form-control text-center" id="phone" value="{{ $user->user_phone }}" name="phone" required />
+                       <input type="text" class="form-control text-center" id="phone" 
+                       value="{{ $user->user_phone }}" name="phone" pattern="\([0-9]{2}\) [0-9]{4,6}-[0-9]{3,4}$" required />
                    </div>
 
                    <div id="confm1" class="text-sm-center" >

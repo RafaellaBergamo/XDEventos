@@ -188,8 +188,17 @@
     grid-column: 2 / span 5;
 }
 
+#table-clients{
+    border-color: lightgray !important;
+}
+#table-clients th{
+    border-color: lightgray !important;
+    font-weight: 500;
+}
 
-
+#table-clients_paginate {
+    font-size: 13px !important;
+}
 
 
 

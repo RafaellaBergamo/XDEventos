@@ -2,6 +2,7 @@
 
 $(document).ready(function(){
 
+
     (function () {
         'use strict'
       
@@ -23,7 +24,8 @@ $(document).ready(function(){
           })
       
     })()
-    
+
+
     $("#state").on("change", function(){
         var uf = $("#state").val();
 
@@ -59,7 +61,7 @@ $(document).ready(function(){
     })
 
     $("#table-clients").DataTable({
-        dom: "tipr",
+        dom: "tpr",
         pageLength: '10'
     })
 

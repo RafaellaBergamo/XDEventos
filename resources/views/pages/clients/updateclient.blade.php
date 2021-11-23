@@ -20,7 +20,8 @@
 
         <div class="card-body" style="padding-bottom: 0.229rem;">
 
-            <form id="clients-update-form needs-validation" action="{{ route('save-update-client') }}" method="POST" novalidate>
+            <form id="clients-update-form" class="needs-validation" action="{{ route('save-update-client') }}"
+             method="POST" novalidate>
                 {{ csrf_field() }}
                 <div class="grid-new-client">
                     <div id="confm1" class="text-sm-center" >
@@ -48,14 +49,16 @@
                        <label> Doc.: </label>
                    </div>
                    <div id="confm2" class="text-sm-left">
-                       <input type="text" class="form-control text-center" id="cnpj" value="{{ $client->client_cnpj }}" name="cnpj" required />
+                       <input type="text" class="form-control text-center" id="cnpj" value="{{ $client->client_cnpj }}" 
+                       pattern="^([0-9]{2}).([0-9]{3}).([0-9]{3})/([0-9]{4})-([0-9]{2})$" name="cnpj" required />
                    </div>
 
                    <div id="confm1" class="text-sm-center" >
                        <label> Telefone: </label>
                    </div>
                    <div id="confm2" class="text-sm-left">
-                       <input type="text" class="form-control text-center" id="phone"  value="{{ $client->client_phone }}" name="phone" required />
+                       <input type="text" class="form-control text-center" id="phone"  
+                       value="{{ $client->client_phone }}" name="phone" pattern="\([0-9]{2}\) [0-9]{4,6}-[0-9]{3,4}$" required />
                    </div>
 
                    <div id="confm1" class="text-sm-center" >

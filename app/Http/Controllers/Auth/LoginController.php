@@ -34,7 +34,7 @@ class LoginController extends Controller
             return redirect()->route('clients');
         }
 
-        return view('pages.user-pages.login');
+        return view('pages.auth.login');
     }
 
     public function logout()
@@ -65,12 +65,14 @@ class LoginController extends Controller
                 $userSession = session()->get('user');
                 $userSession->logged = true;
                 
-
                 return redirect()->route('clients');
+            }
+            else {
+                return view('pages.auth.login')->with('error', "Senha incorreta!");
             }
         }
         else {
-            return view('pages.user-pages.login')->with('notfound', true);
+            return view('pages.auth.login')->with('error', "Usuário não cadastrado");
         }
         
     }
