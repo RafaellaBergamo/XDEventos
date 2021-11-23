@@ -17,7 +17,7 @@ class CreateClientsTable extends Migration
             $table->id();
             $table->string('client_name');
             $table->string('client_email');
-            $table->string('client_cnpj')->unique();
+            $table->string('client_cnpj');
             $table->string('client_phone');
             $table->string('client_origin')->nullable();
             $table->string('client_state');
