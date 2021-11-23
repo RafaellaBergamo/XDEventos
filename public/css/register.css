@@ -1,0 +1,7 @@
+#password-status {
+    padding: 5px;
+    font-size: 12px;
+}
+#password-status span {
+    color: red;
+}

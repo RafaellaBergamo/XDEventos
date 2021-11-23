@@ -1,24 +1,5 @@
 <?php
-
 use Illuminate\Support\Facades\Route;
-
-use App\Http\Livewire\Auth\ForgotPassword;
-use App\Http\Livewire\Auth\ResetPassword;
-use App\Http\Livewire\Auth\SignUp;
-use App\Http\Livewire\Auth\Login;
-use App\Http\Livewire\Dashboard;
-use App\Http\Livewire\Billing;
-use App\Http\Livewire\Profile;
-use App\Http\Livewire\Tables;
-use App\Http\Livewire\StaticSignIn;
-use App\Http\Livewire\StaticSignUp;
-use App\Http\Livewire\Rtl;
-
-use App\Http\Livewire\LaravelExamples\UserProfile;
-use App\Http\Livewire\LaravelExamples\UserManagement;
-
-use Illuminate\Http\Request;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -30,24 +11,43 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::get('/', Login::class)->name('login');
+Route::get('/', function () { return redirect()->route('view-login'); });
 
-Route::get('/sign-up', SignUp::class)->name('sign-up');
-Route::get('/login', Login::class)->name('login');
 
-Route::get('/login/forgot-password', ForgotPassword::class)->name('forgot-password');
- 
-Route::get('/reset-password/{id}',ResetPassword::class)->name('reset-password')->middleware('signed');
+Route::get('login', 'Auth\LoginController@viewLogin')->middleware('throttle:6')->name('view-login');
 
-Route::middleware('auth')->group(function () {
-    Route::get('/dashboard', Dashboard::class)->name('dashboard');
-    Route::get('/billing', Billing::class)->name('billing');
-    Route::get('/profile', Profile::class)->name('profile');
-    Route::get('/tables', Tables::class)->name('tables');
-    Route::get('/static-sign-in', StaticSignIn::class)->name('sign-in');
-    Route::get('/static-sign-up', StaticSignUp::class)->name('static-sign-up');
-    Route::get('/rtl', Rtl::class)->name('rtl');
-    Route::get('/laravel-user-profile', UserProfile::class)->name('user-profile');
-    Route::get('/laravel-user-management', UserManagement::class)->name('user-management');
+
+
+Route::group(['middleware' => 'auth.authenticate'], function() {
+    Route::get('/clients', 'ClientsController@viewClients' )->name('clients');
+    Route::post('/clients', 'ClientsController@getClients' )->name('get-clients');
+    Route::get('/clients/new-client', 'ClientsController@newClient' )->name('new-client');
+    Route::post('/clients/save-client', 'ClientsController@saveClient' )->name('save-client');
+    Route::post('/clients/update-client', 'ClientsController@updateClient' )->name('save-update-client');
+    Route::post('/clients/delete-client', 'ClientsController@deleteClient' )->name('delete-client');
+    Route::get('/clients/update-client/{id}', 'ClientsController@viewUpdateClient' )->name('update-client');
+
+    Route::get('/users', 'UsersController@viewUsers' )->name('users');
+    Route::post('/users', 'UsersController@getUsers' )->name('get-users');
+    Route::get('/users/new-user', 'UsersController@newUser' )->name('new-user');
+    Route::post('/users/save-user', 'UsersController@saveUser' )->name('save-user');
+    Route::post('/users/update-user', 'UsersController@updateUser' )->name('save-update-user');
+    Route::post('/users/delete-user', 'UsersController@deleteUser' )->name('delete-user');
+    Route::get('/users/update-user/{id}', 'UsersController@viewUpdateUser' )->name('update-user');
 });
+
+
+Route::group(['prefix' => 'auth'],function() {
+    Route::post('login', 'Auth\LoginController@loginUser')->name('login');
+    Route::get('logout', 'Auth\LoginController@logout')->name('logout');
+    Route::get('register', 'Auth\CreateAccountController@newAccount');
+    Route::post('register', 'Auth\CreateAccountController@createAccount')->name('create-account');
+    Route::post('forgot-password', 'Auth\ForgotPasswordController@getMail');
+    Route::post('send-email', 'Auth\ForgotPasswordController@sendMail');
+    Route::get('change-password/{email}', 'Auth\ForgotPasswordController@viewChangePassword');
+    Route::post('change-password', 'Auth\ForgotPasswordController@changePassword')->name('change-password');
+    Route::post('get-cities', 'Auth\CreateAccountController@getCities');
+});
+
+
 
