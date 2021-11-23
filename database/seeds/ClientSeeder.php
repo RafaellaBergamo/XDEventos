@@ -14,7 +14,7 @@ class ClientSeeder extends Seeder
     public function run()
     {
         DB::table('clients')->insert([
-            'id'          =>  1
+            'id'          =>  1,
             'client_name' => 'João da Silva',
             'client_email' => 'joao.silva@gmail.com',
             'client_cnpj' => '26.462.283/0001-87',
@@ -29,7 +29,7 @@ class ClientSeeder extends Seeder
         ]);
 
         DB::table('clients')->insert([
-            'id'          => 2
+            'id'          => 2,
             'client_name' => 'Ana Maria de Oliveira',
             'client_email' => 'anamaria_oliveira@gmail.com',
             'client_cnpj' => '44.375.566/0001-73',
