@@ -33,7 +33,7 @@
           <div class="text-block text-center my-3">
             <span class="text-small font-weight-semibold">Novo por aqui ?</span>
             <a href="{{ url('/auth/register') }}" class="text-black text-small">Crie sua conta</a>
-            <input type="hidden" id="token" value="{{ csrf_token() }}">
+            <input type="hidden" id="token" name="_token" value="{{ csrf_token() }}">
           </div>
         </form>
       </div>
