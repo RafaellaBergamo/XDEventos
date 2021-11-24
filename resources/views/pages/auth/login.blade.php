@@ -8,6 +8,7 @@
       <div class="auto-form-wrapper">
       <h4 class="text-center mb-4">Login</h4>
         <form action="{{ route('login') }}" method="POST" class="needs-validation" novalidate>
+         {{ csrf_field() }}
           <div class="form-group">
             <label class="label">Email</label>
             <div class="input-group">
