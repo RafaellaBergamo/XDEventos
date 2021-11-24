@@ -1,5 +1,11 @@
 $(document).ready(function(){
 
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+    
     $("#forgot-password").on("click", function() {
         showModal()
     })
@@ -82,7 +88,6 @@ function showModal() {
                     var route = "/auth/send-email";
                     var data = {
                         'email'  : email,
-                        '_token' : $("#token").val()
                     }
                     $.post(route, data, function(response) {
                         if(response.status_code == 200) {
