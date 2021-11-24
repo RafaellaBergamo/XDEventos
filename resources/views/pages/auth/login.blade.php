@@ -1,7 +1,7 @@
 @extends('layout.master-mini')
 @section('content')
 <link rel="stylesheet" href="/css/forgotpassword.css"> 
-<meta name="csrf-token" content="{{ csrf_token() }}">
+
 <div class="content-wrapper d-flex align-items-center justify-content-center auth theme-one" style="background-image: linear-gradient(to bottom right, rgba(191, 224, 242, 0.29), rgba(191, 224, 242, 0)), url('/assets/images/auth/background-login.png'); background-size: cover;">
   <div class="row w-100">
     <div class="col-lg-4 mx-auto">
