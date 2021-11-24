@@ -36,6 +36,7 @@
               <span id="number"> <i class="mdi mdi-close-circle"></i> Um número </span>  <br>
               <span id="lowercase"> <i class="mdi mdi-close-circle"></i> Uma letra minúscula </span> 
             </div>
+            
             <div class="form-group">
                 <button class="btn btn-primary submit-btn btn-block">Salvar</button>
                 <input type="hidden" name="id" id="id" value="{{ $id }}">
