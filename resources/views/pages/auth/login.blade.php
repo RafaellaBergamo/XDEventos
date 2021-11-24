@@ -7,6 +7,7 @@
       <div class="auto-form-wrapper">
       <h4 class="text-center mb-4">Login</h4>
         <form action="{{ route('login') }}" method="POST" class="needs-validation" novalidate>
+        {{ csrf_field() }}
           <div class="form-group">
             <label class="label">Email</label>
             <div class="input-group">
@@ -33,7 +34,7 @@
           <div class="text-block text-center my-3">
             <span class="text-small font-weight-semibold">Novo por aqui ?</span>
             <a href="{{ url('/auth/register') }}" class="text-black text-small">Crie sua conta</a>
-            <input type="hidden" id="token" name="_token" value="{{ csrf_token() }}">
+            <input type="hidden" id="token" value="{{ csrf_token() }}">
           </div>
         </form>
       </div>
