@@ -57,7 +57,7 @@
           <div class="form-group">
             <div class="input-group">
               <input type="password" onKeyUp="verifyPassword();" class="form-control inputs-login" name="password" required id="password"
-              pattern="\([0-9])([A-Z])([~,!,@,#,$,%,^,&,*,-,_,+,=,?,>,<])([a-z])$" placeholder="Senha">
+              placeholder="Senha">
               <div class="input-group-append">
                 <span class="input-group-text eye">
                   <i id="icon" class="mdi mdi-eye-outline"></i>
