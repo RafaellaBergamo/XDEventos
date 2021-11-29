@@ -30,7 +30,7 @@
             <button class="btn btn-primary submit-btn btn-block">Entrar</button>
           </div>
           <div class="form-group d-flex justify-content-between">
-            <a id="forgot-password" class="text-small forgot-password text-black">Esqueci a senha</a>
+            <a href="#" id="forgot-password" class="text-small forgot-password text-black">Esqueci a senha</a>
           </div>
           <div class="text-block text-center my-3">
             <span class="text-small font-weight-semibold">Novo por aqui ?</span>
