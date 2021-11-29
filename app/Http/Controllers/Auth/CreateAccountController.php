@@ -29,6 +29,7 @@ class CreateAccountController extends Controller
                 'user_city'     => $request->city,
                 'user_phone'    => $request->phone,
                 'user_gender'   => $request->gender,
+                'user_sit'      => $request->sit,
                 'user_password' => Hash::make($password)
             ]);
 
