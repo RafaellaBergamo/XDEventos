@@ -37,6 +37,8 @@
             <a href="{{ url('/auth/register') }}" class="text-black text-small">Crie sua conta</a>
           </div>
         </form>
+
+        <input type="hidden" name="_token" id="#token" value="{{ csrf_token() }}">
       </div>
      
     </div>
