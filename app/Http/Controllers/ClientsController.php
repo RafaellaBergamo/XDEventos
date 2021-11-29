@@ -105,7 +105,7 @@ class ClientsController extends Controller
                 'client_state'    => $request->state,
                 'client_city'     => $request->city,
                 'client_phone'    => $request->phone,
-                'client_sit'      => "A",
+                'client_sit'      => $request->sit,
                 'client_obs'      => $request->obs,
                 'client_origin'   => !empty($origin) ? implode(";", $origin) : ""
             ]);
