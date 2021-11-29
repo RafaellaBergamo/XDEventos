@@ -1,15 +1,10 @@
 $(document).ready(function($){
-  $.ajaxSetup({
-    headers: {
-        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-    }
-  });
 
 	(function () {
         'use strict'
       
         // Fetch all the forms we want to apply custom Bootstrap validation styles to
-        var forms = document.querySelectorAll('.needs-validation')
+        const forms = document.querySelectorAll('.needs-validation')
 
 
         // Loop over them and prevent submission
@@ -50,7 +45,7 @@ $(document).ready(function($){
 
 function showModal() {
   $(".required").css("display", "none");
-  var regex = new RegExp(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/);
+  const regex = new RegExp(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/);
 
   msg = "<input type='email' id='input-email'>";
   msg += '<div class="required" style="display: none">  </div>'
@@ -66,7 +61,8 @@ function showModal() {
           confirm: {
               label: "Enviar",
               callback: function(){
-                  var email = $('#input-email').val()
+                $("body").css("cursor", "wait")
+                  let email = $('#input-email').val()
                   if(email === "") {
                       $(".required").html("**Campo obrigatório!");
                       $(".required").show();
@@ -78,22 +74,23 @@ function showModal() {
                       return false
                   }
 
-                  var route = "/auth/send-email";
-                  var data = {
-                      'email'  : email,
-                      'token'  : $("#token").val()
+                  let route = "/auth/send-email";
+                  let data =  {
+                    'email'  : email,
+                    '_token'  : $("#token").val()
                   }
+
                   $.post(route, data, function(response) {
-                      if(response.status_code == 200) {
-                          if(response.success == false) {
-                              error_modal(response.message)
-                          } 
-                          else {
-                              var time_send = new Date().getTime() / 1000;
-                              code_modal(time_send, email, response.data.token)
-                          }
-                      }
-                      console.log(response)
+                    $("body").css("cursor", "default")
+                    if(response.status_code == 200) {
+                        if(response.success == false) {
+                          error_modal(response.message)
+                        } 
+                        else {
+                          let time_send = new Date().getTime() / 1000;
+                          code_modal(time_send, email, response.data.token)
+                        }
+                    }
                   })
               }
           }
@@ -102,15 +99,46 @@ function showModal() {
   })
 }
 
-function error_login(msg) {
-	bootbox.alert({
-        size: 'small',
-        backdrop: true,
-        message: msg,
-        title: "Atenção!!",
-        centerVertical: true,
-        show: true,
-    })
+function error_modal(msg) {
+  bootbox.alert({
+      size: 'small',
+      backdrop: true,
+      message: msg,
+      title: "Atenção!!",
+      centerVertical: true,
+      show: true,
+  })
+}
+
+function code_modal(time, email, token){
+  var msg = document.createElement('div')
+  msg.innerHTML = '<p class="text-left"> Um código foi enviado para o email: </p> ';
+  msg.innerHTML += '<p class="text-center"> <strong>'+ email +'</strong> </p>'
+  msg.innerHTML += '<p class="text-left">  Por favor, coloque-o no espaço abaixo para confirmar que esse e-mail é seu. </p>';
+  msg.innerHTML += '<p class="text-center"> <input maxlength="6" placeholder="Digite o código aqui"  type="text" pattern="[0-9]+$" id="code"></p> '
+
+  bootbox.confirm({
+      size: 'small',
+      backdrop: false,
+      message: msg,
+      title: "Confirme seu email!",
+      centerVertical: true,
+      show: true,
+      callback: function(){
+          var code = $("#code").val()
+          if(code !== "") {
+              console.log(code, token)
+              if(code !== token) {
+                  bootbox.alert("Código inválido", {
+                      size: 'small'
+                  });
+              }
+              else {
+                  window.location.href = "/auth/change-password/" + encodeURIComponent(email);
+              }
+          }
+      }
+  })
 }
  
  

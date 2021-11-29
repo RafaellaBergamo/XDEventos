@@ -52,89 +52,7 @@ $(document).ready(function(){
       })
 })
 
-function showModal() {
-    $(".required").css("display", "none");
-    var regex = new RegExp(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/);
 
-    msg = "<input type='email' id='input-email'>";
-    msg += '<div class="required" style="display: none">  </div>'
-    bootbox.dialog({
-        size: 'small',
-        backdrop: true,
-        message: msg,
-        title: "Por favor, informe seu email: <br>  ",
-        input: "email",
-        centerVertical: true,
-        show: true,
-        buttons: {
-            confirm: {
-                label: "Enviar",
-                callback: function(){
-                    var email = $('#input-email').val()
-                    if(email === "") {
-                        $(".required").html("**Campo obrigatório!");
-                        $(".required").show();
-                        return false
-                    }
-                    if(!regex.test(email)){
-                        $(".required").html("**Email inválido!");
-                        $(".required").show();
-                        return false
-                    }
-
-                    var route = "/auth/send-email";
-                    var data = {
-                        'email'  : email,
-                    }
-                    $.post(route, data, function(response) {
-                        if(response.status_code == 200) {
-                            if(response.success == false) {
-                                error_modal(response.message)
-                            } 
-                            else {
-                                var time_send = new Date().getTime() / 1000;
-                                code_modal(time_send, email, response.data.token)
-                            }
-                        }
-                        console.log(response)
-                    })
-                }
-            }
-        },
-        
-    })
-}
-
-function code_modal(time, email, token){
-    var msg = document.createElement('div')
-    msg.innerHTML = '<p class="text-left"> Um código foi enviado para o email: </p> ';
-    msg.innerHTML += '<p class="text-center"> <strong>'+ email +'</strong> </p>'
-    msg.innerHTML += '<p class="text-left">  Por favor, coloque-o no espaço abaixo para confirmar que esse e-mail é seu. </p>';
-    msg.innerHTML += '<p class="text-center"> <input maxlength="6" placeholder="Digite o código aqui"  type="text" pattern="[0-9]+$" id="code"></p> '
-
-    bootbox.confirm({
-        size: 'small',
-        backdrop: false,
-        message: msg,
-        title: "Confirme seu email!",
-        centerVertical: true,
-        show: true,
-        callback: function(){
-            var code = $("#code").val()
-            if(code !== "") {
-                console.log(code, token)
-                if(code !== token) {
-                    bootbox.alert("Código inválido", {
-                        size: 'small'
-                    });
-                }
-                else {
-                    window.location.href = "/auth/change-password/" + encodeURIComponent(email);
-                }
-            }
-        }
-    })
-}
 
 function error_modal(msg) {
     bootbox.alert({
@@ -208,11 +126,6 @@ function verifyPassword()
   }
 
   return ok
-}
-
-
-function matchPassword() {
-
 }
 
 

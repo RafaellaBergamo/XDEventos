@@ -38,7 +38,7 @@
           </div>
         </form>
 
-        <input type="hidden" name="_token" id="#token" value="{{ csrf_token() }}">
+        <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
       </div>
      
     </div>
@@ -51,9 +51,9 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.5.2/bootbox.min.js"></script>
 @endpush
 
-<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.js"></script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script type="text/javascript" src="/assets/js/auth/login.js"></script>
-<script type="text/javascript" src="/assets/js/auth/forgotpassword.js"></script>
+
 
 <script>
  $(document).ready(function($){
@@ -61,7 +61,7 @@
     if(isset($error))
     {
     ?> 
-      error_login("<?php echo $error ;?>")
+      error_modal("<?php echo $error ;?>")
     <?php
       unset($error);
     }
