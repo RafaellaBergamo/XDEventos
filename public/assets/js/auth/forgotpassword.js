@@ -38,18 +38,18 @@ $(document).ready(function(){
         }
       })
   
-      $('.eye2').click(function(){
-        let input = document.querySelector('#password_confirm');
-        let i = document.querySelector('#icon2');
-  
-        if(input.getAttribute('type') == 'password'){
-            input.setAttribute('type', 'text');
-            i.setAttribute('class', 'mdi mdi-eye-off-outline');
-        } else {
-            input.setAttribute('type', 'password');
-            i.setAttribute('class', 'mdi mdi-eye-outline');
-        }
-      })
+    $('.eye2').click(function(){
+    let input = document.querySelector('#password_confirm');
+    let i = document.querySelector('#icon2');
+
+    if(input.getAttribute('type') == 'password'){
+        input.setAttribute('type', 'text');
+        i.setAttribute('class', 'mdi mdi-eye-off-outline');
+    } else {
+        input.setAttribute('type', 'password');
+        i.setAttribute('class', 'mdi mdi-eye-outline');
+    }
+    })
 })
 
 
