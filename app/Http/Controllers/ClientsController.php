@@ -78,7 +78,6 @@ class ClientsController extends Controller
 
     public function saveClient(Request $request) 
     {
-        $origin = $request->facebook;
         $registerController = new CreateAccountController();
         $states = $registerController->getStates();
         $origin = [];
