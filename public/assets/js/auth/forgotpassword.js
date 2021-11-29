@@ -6,10 +6,7 @@ $(document).ready(function(){
         }
     });
     
-    $("#forgot-password").on("click", function() {
-        showModal()
-    })
-
+    
     $("#forgot-password-form").on("submit", function(event){
         if(!verifyPassword()) {
             event.preventDefault()
