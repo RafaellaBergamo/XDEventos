@@ -81,6 +81,7 @@ function showModal() {
                   var route = "/auth/send-email";
                   var data = {
                       'email'  : email,
+                      'token'  : $("#token").val()
                   }
                   $.post(route, data, function(response) {
                       if(response.status_code == 200) {
