@@ -36,7 +36,7 @@ $(document).ready(function($){
 		}
 	})
 
-  $("#forgot-password").on("click", function() {
+  $(".forgot-password").on("click", function() {
     showModal()
   })
 
